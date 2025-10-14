@@ -1,6 +1,6 @@
-<div class="header-container">Natural Cycles</div>
+<div class="header-container" *appIfPortrait>Natural Cycles</div>
 <div class="app-container">
   <app-countdown></app-countdown>
-  <app-quote></app-quote>
+  <app-quote *appIfPortrait></app-quote>
   <app-event-form></app-event-form>
 </div>
