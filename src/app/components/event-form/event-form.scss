@@ -1,30 +1,36 @@
+@use '../../../variables' as *;
+
 .input-container {
   display: flex;
   gap: 10px;
-  margin: 15px 0;
+  width: inherit;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
 }
 
 .input-wrapper {
   position: relative;
+  margin-top: 25px;
 }
 
 .input-wrapper input {
   width: 300px;
-  padding: 10px 15px;
+  padding: 15px;
   margin: 5px;
   border: 1px solid #333;
-  border-radius: 8px;
+  border-radius: 4px;
   background: transparent;
 }
 
 .input-wrapper label {
   position: absolute;
-  left: 12px;
-  bottom: 35px;
+  left: 10px;
+  bottom: 45px;
   padding: 0 5px;
   color: #333;
   pointer-events: none;
-  background-color: white;
+  background-color: $brand-grey;
 }
 
 @media (orientation: portrait) {
