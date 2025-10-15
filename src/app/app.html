@@ -1,6 +1,6 @@
 <div class="logo-container" *appIfPortrait>Natural Cycles°</div>
 <div class="app-container">
-  <app-countdown></app-countdown>
+  <app-countdown [eventTitle]="eventTitle" [eventDate]="eventDate"></app-countdown>
   <app-quote *appIfPortrait></app-quote>
-  <app-event-form></app-event-form>
+  <app-event-form [(title)]="eventTitle" [(date)]="eventDate"></app-event-form>
 </div>

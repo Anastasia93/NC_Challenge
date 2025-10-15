@@ -7,6 +7,11 @@ import { OrientationService } from './services/orientation.service';
 import { IfPortraitDirective } from './directives/portrait.directive';
 import { Orientation } from './types/orientation.enum';
 
+const DEFAULT_EVENT = {
+  TITLE: 'Midsummer Eve',
+  DATE: '2026-06-20',
+};
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -17,6 +22,8 @@ import { Orientation } from './types/orientation.enum';
 export class App {
   protected readonly title = signal('nc-challenge');
   orientation: Orientation = Orientation.Landscape;
+  eventTitle = DEFAULT_EVENT.TITLE;
+  eventDate = DEFAULT_EVENT.DATE;
 
   constructor(private orientationService: OrientationService) {}
 
