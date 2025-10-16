@@ -1,27 +1,49 @@
-# NcCountdown
+# Natural Cycles Countdown Challenge
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+A responsive countdown app built with **Angular 17+**.  
+The project dynamically fits all text to a single line, adapts to orientation changes,  
+and persists user input across sessions.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Features
+
+- Reusable `AutoFitTextDirective` that resizes text to fit its container width.
+- Countdown timer that updates in real-time.
+- User-defined event name and date, stored in `localStorage`.
+- Random "Quote of the Day" fetched from `https://dummyjson.com/quotes/random`.
+- Adaptive layout that responds to portrait and landscape orientations.
+
+---
+
+## 🧑‍💻 Tech Stack
+
+- Angular 17  
+- TypeScript  
+- SCSS  
+- RxJS (for countdown updates)  
+- Prettier for code formatting  
+
+---
+
+## ⚙️ Development
+
+### Run locally
 
 ```bash
-ng serve
+npm install
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Then open http://localhost:4200
 
-## Building
+### Build for production
+```bash ng build --configuration production```
 
-To build the project run:
+Output will be in the dist/ folder.
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🫶 Author
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Developed by Anastasiia as a part of the Natural Cycles Frontend Challenge 2025.
