@@ -1,9 +1,11 @@
 import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import { AutoFitTextDirective } from '../../directives/fit-text.directive';
 
 @Component({
   selector: 'app-countdown',
   templateUrl: './countdown.html',
-  styleUrls: ['./countdown.scss']
+  styleUrls: ['./countdown.scss'],
+  imports: [AutoFitTextDirective]
 })
 export class CountdownComponent implements OnInit, OnDestroy, OnChanges {
   @Input() eventTitle: string = ''; 
@@ -49,11 +51,7 @@ export class CountdownComponent implements OnInit, OnDestroy, OnChanges {
     if (!timePart) {
       return new Date(y, (m || 1) - 1, d || 1, 18, 0, 0, 0); // default 'evening' time
     }
-    const timeParts = timePart.split(':').map(Number);
-    const hour = timeParts[0] ?? 0;
-    const minute = timeParts[1] ?? 0;
-    const second = timeParts[2] ?? 0;
-    
+    const [hour = 0, minute = 0, second = 0] = timePart.split(':').map(Number);
     return new Date(y, (m || 1) - 1, d || 1, hour, minute, second, 0);
   }
 
@@ -83,6 +81,7 @@ export class CountdownComponent implements OnInit, OnDestroy, OnChanges {
       this.remainingTime = '';
       return;
     }
+
     const now = Date.now();
     const distance = this.targetDate.getTime() - now;
 

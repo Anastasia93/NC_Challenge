@@ -1,4 +1,10 @@
 <div class="countdown-container">
-    <h2 class="title">Time to {{ eventTitle }}</h2>
-    <div class="time">{{ remainingTime }}</div>
-</div>
+    <h2 class="title one-line-text" appAutoFitText [maxFontSize]="60" [appAutoFitTextTrigger]="eventTitle">
+      Time to {{ eventTitle }}
+    </h2>
+  
+    <div class="time one-line-text" appAutoFitText [maxFontSize]="60" [appAutoFitTextTrigger]="remainingTime">
+      {{ remainingTime }}
+    </div>
+  </div>
+  
