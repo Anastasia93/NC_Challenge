@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Injectable } from '@angular/core';
+
 import { Orientation } from '../types/orientation.enum';
 
 @Injectable({

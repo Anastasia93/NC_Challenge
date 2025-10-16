@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnDestroy, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+
 import { AutoFitTextDirective } from '../../directives/fit-text.directive';
 
 @Component({
@@ -13,6 +14,7 @@ export class CountdownComponent implements OnInit, OnDestroy, OnChanges {
 
   targetDate!: Date;
   remainingTime: string = '';
+  
   private intervalId: any;
 
   ngOnInit() {

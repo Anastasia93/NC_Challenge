@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[appAutoFitText]'
@@ -10,10 +10,10 @@ export class AutoFitTextDirective implements AfterViewInit {
     this.fit();
   }
 
-  private element: HTMLElement;
+  private elementHTML: HTMLElement;
 
-  constructor(el: ElementRef) {
-    this.element = el.nativeElement;
+  constructor(element: ElementRef) {
+    this.elementHTML = element.nativeElement;
   }
 
   ngAfterViewInit() {
@@ -26,25 +26,25 @@ export class AutoFitTextDirective implements AfterViewInit {
   }
 
   private fit() {
-    const el = this.element;
-    if (!el.textContent) return;
+    const element = this.elementHTML;
+    if (!element.textContent) return;
 
-    const parent = el.parentElement;
+    const parent = element.parentElement;
     if (!parent) return;
 
     let fontSize = this.maxFontSize;
-    el.style.whiteSpace = 'nowrap';
-    el.style.display = 'inline-block';
-    el.style.fontSize = fontSize + 'px';
+    element.style.whiteSpace = 'nowrap';
+    element.style.display = 'inline-block';
+    element.style.fontSize = fontSize + 'px';
 
     const parentWidth = parent.clientWidth;
 
-    while (el.scrollWidth > parentWidth && fontSize > this.minFontSize) {
+    while (element.scrollWidth > parentWidth && fontSize > this.minFontSize) {
       fontSize -= 1;
-      el.style.fontSize = fontSize + 'px';
+      element.style.fontSize = fontSize + 'px';
     }
 
-    el.style.textAlign = 'center';
-    el.style.width = '100%';
+    element.style.textAlign = 'center';
+    element.style.width = '100%';
   }
 }

@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
+
 import { CountdownComponent } from './components/countdown/countdown';
 import { EventFormComponent } from './components/event-form/event-form';
-import { QuoteComponent } from './components/quote/quote';
-import { OrientationService } from './services/orientation.service';
 import { IfPortraitDirective } from './directives/portrait.directive';
 import { Orientation } from './types/orientation.enum';
+import { OrientationService } from './services/orientation.service';
+import { QuoteComponent } from './components/quote/quote';
 
 const DEFAULT_EVENT = {
   TITLE: 'Midsummer Eve',
@@ -14,14 +15,15 @@ const DEFAULT_EVENT = {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [IfPortraitDirective, CountdownComponent, EventFormComponent, QuoteComponent],
+  imports: [CountdownComponent, EventFormComponent, IfPortraitDirective, QuoteComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
 })
 export class App {
-  protected readonly title = signal('nc-challenge');
   orientation: Orientation = Orientation.Landscape;
 
+  protected readonly title = signal('nc-challenge');
+  
   private _eventTitle: string = DEFAULT_EVENT.TITLE;
   private _eventDate: string = DEFAULT_EVENT.DATE;
 

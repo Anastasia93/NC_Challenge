@@ -13,8 +13,8 @@ export class EventFormComponent {
   @Output() dateChange = new EventEmitter<string>();
 
   onTitleChange(e: Event) {
-    const v = (e.target as HTMLInputElement).value;
-    this.title = v;
+    const value = (e.target as HTMLInputElement).value;
+    this.title = value;
     this.titleChange.emit(this.title);
   }
 

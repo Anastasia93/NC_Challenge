@@ -1,12 +1,15 @@
-import { Component, OnInit, inject } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+
 import { CommonModule } from '@angular/common'
+import { Component, inject, OnInit } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
 
 interface Quote {
   id?: number
   quote: string
   author: string
 }
+
+const QUOTE_API_URL = 'https://dummyjson.com/quotes/random';
 
 @Component({
   selector: 'app-quote',
@@ -16,12 +19,11 @@ interface Quote {
   styleUrls: ['./quote.scss'],
 })
 export class QuoteComponent implements OnInit {
-  quote: Quote | null = null;
-  loading = true;
   error = '';
+  loading = true;
+  quote: Quote | null = null;
 
   private static cachedQuote: Quote | null = null;
-
   private http = inject(HttpClient);
 
   ngOnInit() {
@@ -37,7 +39,7 @@ export class QuoteComponent implements OnInit {
     this.loading = true
     this.error = ''
 
-    this.http.get<Quote>('https://dummyjson.com/quotes/random').subscribe({
+    this.http.get<Quote>(QUOTE_API_URL).subscribe({
       next: (data) => {
         this.quote = data
         QuoteComponent.cachedQuote = data

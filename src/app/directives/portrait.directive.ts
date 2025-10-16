@@ -1,24 +1,25 @@
 import {
   Directive,
+  OnDestroy,
   TemplateRef,
-  ViewContainerRef,
-  OnDestroy
+  ViewContainerRef
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { OrientationService } from '../services/orientation.service';
+
 import { Orientation } from '../types/orientation.enum';
+import { OrientationService } from '../services/orientation.service';
 
 @Directive({
   selector: '[appIfPortrait]'
 })
 export class IfPortraitDirective implements OnDestroy {
-  private subscription: Subscription;
   private hasView = false;
+  private subscription: Subscription;
 
   constructor(
     private templateRef: TemplateRef<any>,
+    private orientationService: OrientationService,
     private viewContainer: ViewContainerRef,
-    private orientationService: OrientationService
   ) {
     this.subscription = this.orientationService.orientation$.subscribe(
       (orientation: Orientation) => this.updateView(orientation)
