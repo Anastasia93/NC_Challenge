@@ -1,4 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sauce+One:wght@400;800&display=swap');
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/assets/fonts/open-sauce.one-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/assets/fonts/open-sauce.one-extrabold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 body {
   font-family: 'Open Sauce One', sans-serif;
