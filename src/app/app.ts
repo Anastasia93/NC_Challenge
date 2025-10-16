@@ -4,7 +4,6 @@ import { CountdownComponent } from './components/countdown/countdown';
 import { EventFormComponent } from './components/event-form/event-form';
 import { IfPortraitDirective } from './directives/portrait.directive';
 import { Orientation } from './types/orientation.enum';
-import { OrientationService } from './services/orientation.service';
 import { QuoteComponent } from './components/quote/quote';
 
 const DEFAULT_EVENT = {
@@ -27,7 +26,7 @@ export class App {
   private _eventTitle: string = DEFAULT_EVENT.TITLE;
   private _eventDate: string = DEFAULT_EVENT.DATE;
 
-  constructor(private orientationService: OrientationService) {}
+  constructor() {}
 
   ngOnInit(): void {
     const savedTitle = localStorage.getItem('eventTitle');
@@ -35,10 +34,6 @@ export class App {
 
     if (savedTitle) this._eventTitle = savedTitle;
     if (savedDate) this._eventDate = savedDate;
-
-    this.orientationService.orientation$.subscribe(
-      (o: Orientation) => (this.orientation = o)
-    );
   }
 
   get eventTitle(): string {

@@ -1,42 +1,29 @@
-import {
-  Directive,
-  OnDestroy,
-  TemplateRef,
-  ViewContainerRef
-} from '@angular/core';
-import { Subscription } from 'rxjs';
-
-import { Orientation } from '../types/orientation.enum';
-import { OrientationService } from '../services/orientation.service';
+import { Directive, TemplateRef, ViewContainerRef, OnDestroy } from '@angular/core'
 
 @Directive({
-  selector: '[appIfPortrait]'
+  selector: '[appIfPortrait]',
+  standalone: true,
 })
 export class IfPortraitDirective implements OnDestroy {
-  private hasView = false;
-  private subscription: Subscription;
+  private mediaQuery = window.matchMedia('(orientation: portrait)')
+  private listener = () => this.updateView()
 
   constructor(
     private templateRef: TemplateRef<any>,
-    private orientationService: OrientationService,
     private viewContainer: ViewContainerRef,
   ) {
-    this.subscription = this.orientationService.orientation$.subscribe(
-      (orientation: Orientation) => this.updateView(orientation)
-    );
+    this.mediaQuery.addEventListener('change', this.listener)
+    this.updateView()
   }
 
-  private updateView(orientation: Orientation): void {
-    if (orientation === Orientation.Portrait && !this.hasView) {
-      this.viewContainer.createEmbeddedView(this.templateRef);
-      this.hasView = true;
-    } else if (orientation !== Orientation.Portrait && this.hasView) {
-      this.viewContainer.clear();
-      this.hasView = false;
+  private updateView() {
+    this.viewContainer.clear()
+    if (this.mediaQuery.matches) {
+      this.viewContainer.createEmbeddedView(this.templateRef)
     }
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  ngOnDestroy() {
+    this.mediaQuery.removeEventListener('change', this.listener)
   }
 }
