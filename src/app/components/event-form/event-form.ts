@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-event-form',
   templateUrl: './event-form.html',
-  styleUrls: ['./event-form.scss']
+  styleUrls: ['./event-form.scss'],
 })
 export class EventFormComponent {
   @Input() title: string = '';

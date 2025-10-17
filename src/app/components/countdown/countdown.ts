@@ -6,15 +6,15 @@ import { AutoFitTextDirective } from '../../directives/fit-text.directive';
   selector: 'app-countdown',
   templateUrl: './countdown.html',
   styleUrls: ['./countdown.scss'],
-  imports: [AutoFitTextDirective]
+  imports: [AutoFitTextDirective],
 })
 export class CountdownComponent implements OnInit, OnDestroy, OnChanges {
-  @Input() eventTitle: string = ''; 
+  @Input() eventTitle: string = '';
   @Input() eventDate: string = '';
 
   targetDate!: Date;
   remainingTime: string = '';
-  
+
   private intervalId: any;
 
   ngOnInit() {

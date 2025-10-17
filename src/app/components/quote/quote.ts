@@ -1,12 +1,11 @@
-
-import { CommonModule } from '@angular/common'
-import { Component, inject, OnInit } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 interface Quote {
-  id?: number
-  quote: string
-  author: string
+  id?: number;
+  quote: string;
+  author: string;
 }
 
 const QUOTE_API_URL = 'https://dummyjson.com/quotes/random';
@@ -28,27 +27,27 @@ export class QuoteComponent implements OnInit {
 
   ngOnInit() {
     if (QuoteComponent.cachedQuote) {
-      this.quote = QuoteComponent.cachedQuote
-      this.loading = false
+      this.quote = QuoteComponent.cachedQuote;
+      this.loading = false;
     } else {
-      this.fetchQuote()
+      this.fetchQuote();
     }
   }
 
   fetchQuote() {
-    this.loading = true
-    this.error = ''
+    this.loading = true;
+    this.error = '';
 
     this.http.get<Quote>(QUOTE_API_URL).subscribe({
       next: (data) => {
-        this.quote = data
-        QuoteComponent.cachedQuote = data
-        this.loading = false
+        this.quote = data;
+        QuoteComponent.cachedQuote = data;
+        this.loading = false;
       },
       error: () => {
-        this.error = 'Failed to load the quote.'
-        this.loading = false
+        this.error = 'Failed to load the quote.';
+        this.loading = false;
       },
-    })
+    });
   }
 }

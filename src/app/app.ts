@@ -22,7 +22,7 @@ export class App {
   orientation: Orientation = Orientation.Landscape;
 
   protected readonly title = signal('nc-challenge');
-  
+
   private _eventTitle: string = DEFAULT_EVENT.TITLE;
   private _eventDate: string = DEFAULT_EVENT.DATE;
 

@@ -1,10 +1,17 @@
 <div class="input-container">
   <div class="input-wrapper">
-    <input [value]="title" (input)="onTitleChange($event)" type="text" id="title" required>
+    <input [value]="title" (input)="onTitleChange($event)" type="text" id="title" required />
     <label for="title">Title</label>
   </div>
   <div class="input-wrapper">
-    <input type="datetime-local" [value]="date" (input)="onDateChange($event)" type="date" id="customDate" required>
+    <input
+      type="datetime-local"
+      [value]="date"
+      (input)="onDateChange($event)"
+      type="date"
+      id="customDate"
+      required
+    />
     <label for="customDate">Date</label>
   </div>
 </div>

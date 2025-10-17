@@ -1,8 +1,8 @@
 <div class="quote-container">
-    <div *ngIf="loading">Loading...</div>
-    <div *ngIf="error" class="error">{{ error }}</div>
-  
-    <div *ngIf="quote && !loading" class="quote-box">
-      <p class="quote">{{ quote.quote }}</p>
-    </div>
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="quote && !loading" class="quote-box">
+    <p class="quote">{{ quote.quote }}</p>
   </div>
+</div>
