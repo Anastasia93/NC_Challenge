@@ -1,6 +1,6 @@
 # Natural Cycles Countdown Challenge
 
-A responsive single-page countdown app built with **Angular 17+**.  
+A responsive single-page countdown app built with **Angular 20+**.  
 The project dynamically adjusts text to fit its container, adapts to orientation changes,  
 and persists user input across sessions.
 
