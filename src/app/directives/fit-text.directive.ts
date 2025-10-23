@@ -6,7 +6,7 @@ import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angu
 export class AutoFitTextDirective implements AfterViewInit {
   @Input() minFontSize = 8;
   @Input() maxFontSize = 80;
-  @Input() set appAutoFitTextTrigger(value: any) {
+  @Input() set appAutoFitTextTrigger(value: string) {
     this.fit();
   }
 
