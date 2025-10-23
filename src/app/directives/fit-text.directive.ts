@@ -14,6 +14,12 @@ export class AutoFitTextDirective implements AfterViewInit {
 
   constructor(element: ElementRef) {
     this.elementHTML = element.nativeElement;
+    Object.assign(this.elementHTML.style, {
+      whiteSpace: 'nowrap',
+      display: 'inline-block',
+      textAlign: 'center',
+      width: '100%',
+    });
   }
 
   ngAfterViewInit() {
@@ -33,8 +39,6 @@ export class AutoFitTextDirective implements AfterViewInit {
     if (!parent) return;
 
     let fontSize = this.maxFontSize;
-    element.style.whiteSpace = 'nowrap';
-    element.style.display = 'inline-block';
     element.style.fontSize = fontSize + 'px';
 
     const parentWidth = parent.clientWidth;
@@ -43,8 +47,5 @@ export class AutoFitTextDirective implements AfterViewInit {
       fontSize -= 1;
       element.style.fontSize = fontSize + 'px';
     }
-
-    element.style.textAlign = 'center';
-    element.style.width = '100%';
   }
 }
