@@ -27,10 +27,18 @@ export class CountdownComponent implements OnInit, OnDestroy, OnChanges {
       this.setTargetDateFromInputOrDefault();
       this.startCountdown();
     }
+  
+    if (changes['eventTitle'] && this.targetDate && Date.now() >= this.targetDate.getTime()) {
+      this.handlePastDate();
+    }
   }
 
   ngOnDestroy() {
     this.clearCountdownInterval();
+  }
+
+  private handlePastDate() {
+    this.remainingTime = `${this.eventTitle || 'Event'} is here!`;
   }
 
   private setTargetDateFromInputOrDefault() {
@@ -88,7 +96,7 @@ export class CountdownComponent implements OnInit, OnDestroy, OnChanges {
     const distance = this.targetDate.getTime() - now;
 
     if (distance <= 0) {
-      this.remainingTime = `${this.eventTitle || 'Event'} is here!`;
+      this.handlePastDate();
       this.clearCountdownInterval();
       return;
     }

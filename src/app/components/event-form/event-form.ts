@@ -12,15 +12,15 @@ export class EventFormComponent {
   @Output() titleChange = new EventEmitter<string>();
   @Output() dateChange = new EventEmitter<string>();
 
-  onTitleChange(e: Event) {
+  onInputChange(e: Event, field: 'title' | 'date'): void {
     const value = (e.target as HTMLInputElement).value;
-    this.title = value;
-    this.titleChange.emit(this.title);
-  }
 
-  onDateChange(e: Event) {
-    const v = (e.target as HTMLInputElement).value;
-    this.date = v;
-    this.dateChange.emit(this.date);
+    if (field === 'title') {
+      this.title = value;
+      this.titleChange.emit(value);
+    } else {
+      this.date = value;
+      this.dateChange.emit(value);
+    }
   }
 }
