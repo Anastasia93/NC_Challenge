@@ -38,14 +38,19 @@ export class AutoFitTextDirective implements AfterViewInit {
     const parent = element.parentElement;
     if (!parent) return;
 
-    let fontSize = this.maxFontSize;
-    element.style.fontSize = fontSize + 'px';
+    element.style.fontSize = `${this.maxFontSize}px`;
 
     const parentWidth = parent.clientWidth;
 
-    while (element.scrollWidth > parentWidth && fontSize > this.minFontSize) {
-      fontSize -= 1;
-      element.style.fontSize = fontSize + 'px';
+    if (element.scrollWidth > parentWidth) {
+      const ratio = parentWidth / element.scrollWidth;
+      
+      const newSize = Math.max(
+        this.minFontSize,
+        Math.floor(this.maxFontSize * ratio)
+      );
+
+      element.style.fontSize = `${newSize}px`;
     }
   }
 }
