@@ -6,7 +6,7 @@ import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angu
 export class AutoFitTextDirective implements AfterViewInit {
   @Input() minFontSize = 8;
   @Input() maxFontSize = 80;
-  @Input() set appAutoFitTextTrigger(value: any) {
+  @Input() set appAutoFitTextTrigger(value: string) {
     this.fit();
   }
 
@@ -14,6 +14,12 @@ export class AutoFitTextDirective implements AfterViewInit {
 
   constructor(element: ElementRef) {
     this.elementHTML = element.nativeElement;
+    Object.assign(this.elementHTML.style, {
+      whiteSpace: 'nowrap',
+      display: 'inline-block',
+      textAlign: 'center',
+      width: '100%',
+    });
   }
 
   ngAfterViewInit() {
@@ -32,19 +38,19 @@ export class AutoFitTextDirective implements AfterViewInit {
     const parent = element.parentElement;
     if (!parent) return;
 
-    let fontSize = this.maxFontSize;
-    element.style.whiteSpace = 'nowrap';
-    element.style.display = 'inline-block';
-    element.style.fontSize = fontSize + 'px';
+    element.style.fontSize = `${this.maxFontSize}px`;
 
     const parentWidth = parent.clientWidth;
 
-    while (element.scrollWidth > parentWidth && fontSize > this.minFontSize) {
-      fontSize -= 1;
-      element.style.fontSize = fontSize + 'px';
-    }
+    if (element.scrollWidth > parentWidth) {
+      const ratio = parentWidth / element.scrollWidth;
+      
+      const newSize = Math.max(
+        this.minFontSize,
+        Math.floor(this.maxFontSize * ratio)
+      );
 
-    element.style.textAlign = 'center';
-    element.style.width = '100%';
+      element.style.fontSize = `${newSize}px`;
+    }
   }
 }
